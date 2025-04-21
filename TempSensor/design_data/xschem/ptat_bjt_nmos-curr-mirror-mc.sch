@@ -48,17 +48,18 @@ N 1100 -280 1100 -190 {lab=vh}
 C {devices/code_shown.sym} 100 -670 0 0 {name=NGSPICE only_toplevel=true 
 value="
 *.param mm_ok=1
-.param mc_ok=1
+*.param mc_ok=1
 .temp 27
-
 .control
+
+set tbname="ptat_bjt_nmos-curr-mirror-mc"
 set wr_vecnames
 set wr_singlescale
 
-shell rm -rf ./ptat_bjt_nmos-curr-mirror-mc
-shell mkdir ./ptat_bjt_nmos-curr-mirror-mc
+shell rm -rf ./\{$tbname\}
+shell mkdir ./\{$tbname\}
 
-let mc_runs = 50
+let mc_runs = 100
 let run = 0
 
 **** loop ****
@@ -69,8 +70,8 @@ dowhile run < mc_runs
 
   let vout = vh - vl
 
-  wrdata ptat_bjt_nmos-curr-mirror-mc/ptat_bjt_nmos-curr-mirror-mc\{$&run\}.csv vout vh vl
-  write ptat_bjt_nmos-curr-mirror-mc.raw
+  wrdata \{$tbname\}/\{$tbname\}\{$&run\}.csv vout vh vl
+  write \{$tbname\}.raw
   reset
 
   let run = run+1
@@ -91,18 +92,18 @@ tclcommand="xschem annotate_op"
 C {devices/gnd.sym} 1100 -90 0 0 {name=l6 lab=GND}
 C {devices/gnd.sym} 1340 -90 0 0 {name=l7 lab=GND}
 C {sg13g2_pr/sg13_lv_nmos.sym} 1120 -310 0 1 {name=M2
-l=0.25u
-w=0.25u
+l=2u
+w=5u
 ng=1
 m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_nmos.sym} 1320 -310 0 0 {name=M3
-l=1u
-w=10u
+l=2u
+w=5u
 ng=1
-m=1
+m=10
 model=sg13_lv_nmos
 spiceprefix=X
 }

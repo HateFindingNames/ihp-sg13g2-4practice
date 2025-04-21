@@ -1,0 +1,37 @@
+** sch_path: /foss/designs/practicing/TempSensor/design_data/xschem/band_gap_vref.sch
+**.subckt band_gap_vref
+XQ1 net2 net2 GND GND npn13G2 Nx=1
+XQ2 Vr3 net2 net1 net1 npn13G2 Nx=10
+XQ3 Vref Vr3 GND GND npn13G2 Nx=1
+XR1 net2 Vref rhigh w=0.5e-6 l=9e-6 m=1 b=0
+XR3 Vr3 Vref rhigh w=0.5e-6 l=9e-6 m=1 b=0
+XR2 GND net1 rhigh w=0.5e-6 l=0.7e-6 m=1 b=0
+I0 GND Vref 150u
+**** begin user architecture code
+
+
+.param temp 27
+.control
+
+set tbname=bandgap_vref
+
+save all
+dc temp 0 100 1
+let vr3 = vref - vr3
+write {$tbname}.raw vref vr3
+
+.endc
+
+
+
+
+** IHP models
+.lib cornerMOSlv.lib mos_tt
+.lib cornerHBT.lib hbt_typ
+.lib cornerRES.lib res_typ
+
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

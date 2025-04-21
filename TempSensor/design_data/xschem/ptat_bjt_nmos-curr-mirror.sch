@@ -4,9 +4,9 @@ K {}
 V {}
 S {}
 E {}
-B 2 590 -830 1150 -530 {flags=graph
-y1=0.1
-y2=0.12
+B 2 530 -830 1090 -530 {flags=graph
+y1=-0.058
+y2=-0.041
 ypos1=0
 ypos2=1
 divy=5
@@ -25,32 +25,37 @@ logy=0
 sim_type=dc
 autoload=1
 hilight_wave=-1
-hcursor1_y=0.11683577
-hcursor2_y=0.1027535}
-N 260 -170 260 -110 {lab=GND}
-N 260 -110 300 -110 {lab=GND}
-N 300 -110 300 -100 {lab=GND}
-N 300 -140 300 -110 {lab=GND}
-N 580 -170 580 -110 {lab=GND}
-N 540 -110 580 -110 {lab=GND}
-N 540 -110 540 -100 {lab=GND}
-N 540 -140 540 -110 {lab=GND}
-N 380 -320 500 -320 {lab=#net1}
-N 540 -250 540 -200 {lab=vh}
-N 300 -250 300 -200 {lab=vl}
-N 300 -390 300 -350 {lab=#net1}
-N 300 -390 380 -390 {lab=#net1}
-N 380 -390 380 -320 {lab=#net1}
-N 340 -320 380 -320 {lab=#net1}
-N 540 -320 600 -320 {lab=GND}
-N 240 -320 300 -320 {lab=GND}
-N 300 -470 300 -450 {lab=GND}
-N 540 -250 640 -250 {lab=vh}
-N 540 -290 540 -250 {lab=vh}
-N 300 -250 380 -250 {lab=vl}
-N 300 -290 300 -250 {lab=vl}
-N 540 -390 540 -350 {lab=VDD}
-C {devices/code_shown.sym} 80 -810 0 0 {name=NGSPICE only_toplevel=true 
+hcursor2_y=-0.054404897
+hcursor1_y=-0.044513955}
+T {Range Delta Vdiff(20C - 80C) about 9.89 mV -> alpha about 165 uV/K} 700 -190 0 0 0.4 0.4 {}
+N 320 -120 320 -100 {lab=GND}
+N 560 -120 560 -100 {lab=GND}
+N 400 -320 520 -320 {lab=#net1}
+N 320 -390 320 -350 {lab=#net1}
+N 320 -390 400 -390 {lab=#net1}
+N 400 -390 400 -320 {lab=#net1}
+N 360 -320 400 -320 {lab=#net1}
+N 560 -410 560 -350 {lab=VDD}
+N 560 -320 620 -320 {lab=GND}
+N 260 -320 320 -320 {lab=GND}
+N 320 -470 320 -450 {lab=GND}
+N 560 -230 560 -200 {lab=vl}
+N 320 -230 320 -200 {lab=vh}
+N 520 -170 560 -170 {lab=GND}
+N 520 -170 520 -120 {lab=GND}
+N 520 -120 560 -120 {lab=GND}
+N 560 -140 560 -120 {lab=GND}
+N 600 -230 600 -170 {lab=vl}
+N 560 -230 600 -230 {lab=vl}
+N 560 -290 560 -230 {lab=vl}
+N 320 -170 360 -170 {lab=GND}
+N 360 -170 360 -120 {lab=GND}
+N 320 -120 360 -120 {lab=GND}
+N 320 -140 320 -120 {lab=GND}
+N 280 -230 280 -170 {lab=vh}
+N 280 -230 320 -230 {lab=vh}
+N 320 -290 320 -230 {lab=vh}
+C {devices/code_shown.sym} 0 -810 0 0 {name=NGSPICE only_toplevel=true 
 value="
 .param temp 27
 .control
@@ -74,56 +79,51 @@ C {devices/launcher.sym} 870 -470 0 0 {name=h1
 descr="OP annotate" 
 tclcommand="xschem annotate_op"
 }
-C {sg13g2_pr/pnpMPA.sym} 560 -170 0 1 {name=Q1
-model=pnpMPA
-spiceprefix=X
-w=1u
-l=2u
-m=1
-}
-C {sg13g2_pr/pnpMPA.sym} 280 -170 0 0 {name=Q2
-model=pnpMPA
-spiceprefix=X
-w=1u
-l=2u
-m=1
-}
-C {devices/gnd.sym} 300 -100 0 0 {name=l6 lab=GND}
-C {devices/gnd.sym} 540 -100 0 0 {name=l7 lab=GND}
-C {sg13g2_pr/sg13_lv_nmos.sym} 320 -320 0 1 {name=M2
-l=1u
-w=1u
-ng=1
-m=1
-model=sg13_lv_nmos
-spiceprefix=X
-}
-C {isource.sym} 300 -420 0 0 {name=I0 value=20u}
-C {devices/gnd.sym} 300 -470 3 0 {name=l8 lab=GND}
-C {devices/vsource.sym} 440 -480 0 0 {name=Vgs1 value=1.2}
-C {devices/gnd.sym} 440 -450 0 0 {name=l9 lab=GND}
-C {vdd.sym} 440 -510 0 0 {name=l11 lab=VDD}
-C {devices/gnd.sym} 600 -320 3 0 {name=l1 lab=GND}
-C {devices/gnd.sym} 240 -320 1 0 {name=l2 lab=GND}
-C {code_shown.sym} 80 -940 0 0 {
+C {code_shown.sym} 0 -930 0 0 {
 name=TT_MODELS
 only_toplevel=true
 value="
 ** IHP models
 .lib cornerMOSlv.lib mos_tt
 .lib cornerHBT.lib hbt_typ
-.include ptat_bjt_nmos-curr-mirror.save
 "
 spice_ignore=false
       }
-C {lab_pin.sym} 380 -250 2 0 {name=p3 sig_type=std_logic lab=vl}
-C {lab_pin.sym} 640 -250 2 0 {name=p4 sig_type=std_logic lab=vh}
-C {vdd.sym} 540 -390 0 0 {name=l3 lab=VDD}
-C {sg13g2_pr/sg13_lv_nmos.sym} 520 -320 0 0 {name=M1
-l=1u
-w=10u
+C {devices/gnd.sym} 320 -100 0 0 {name=l3 lab=GND}
+C {devices/gnd.sym} 560 -100 0 0 {name=l4 lab=GND}
+C {sg13g2_pr/sg13_lv_nmos.sym} 340 -320 0 1 {name=M1
+l=2u
+w=5u
 ng=1
-m=2
+m=1
 model=sg13_lv_nmos
 spiceprefix=X
+}
+C {sg13g2_pr/sg13_lv_nmos.sym} 540 -320 0 0 {name=M2
+l=2u
+w=5u
+ng=1
+m=10
+model=sg13_lv_nmos
+spiceprefix=X
+}
+C {isource.sym} 320 -420 0 0 {name=I1 value=10u}
+C {devices/gnd.sym} 320 -470 3 0 {name=l12 lab=GND}
+C {devices/vsource.sym} 460 -480 0 0 {name=Vgs2 value=1.2}
+C {devices/gnd.sym} 460 -450 0 0 {name=l13 lab=GND}
+C {vdd.sym} 560 -410 0 0 {name=l14 lab=VDD}
+C {vdd.sym} 460 -510 0 0 {name=l15 lab=VDD}
+C {devices/gnd.sym} 620 -320 3 0 {name=l16 lab=GND}
+C {devices/gnd.sym} 260 -320 1 0 {name=l17 lab=GND}
+C {lab_pin.sym} 320 -250 2 0 {name=p2 sig_type=std_logic lab=vh}
+C {lab_pin.sym} 560 -250 2 0 {name=p4 sig_type=std_logic lab=vl}
+C {sg13g2_pr/npn13G2.sym} 300 -170 0 0 {name=Q1
+model=npn13G2
+spiceprefix=X
+Nx=1
+}
+C {sg13g2_pr/npn13G2.sym} 580 -170 0 1 {name=Q2
+model=npn13G2
+spiceprefix=X
+Nx=1
 }

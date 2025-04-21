@@ -1,0 +1,58 @@
+** sch_path: /foss/designs/practicing/TempSensor/design_data/xschem/ptat_bjt_nmos-curr-mirror-mc.sch
+**.subckt ptat_bjt_nmos-curr-mirror-mc
+XM2 net1 net1 vh GND sg13_lv_nmos w=5u l=2u ng=1 m=1
+XM3 VDD net1 vl GND sg13_lv_nmos w=5u l=2u ng=1 m=10
+I0 GND net1 10u
+Vgs1 VDD GND 1.2
+XQ2 GND GND vl pnpMPA a=2e-12 p=6e-06 m=1
+XQ1 GND GND vh pnpMPA a=2e-12 p=6e-06 m=1
+**** begin user architecture code
+
+
+*.param mm_ok=1
+*.param mc_ok=1
+.temp 27
+.control
+
+set tbname=ptat_bjt_nmos-curr-mirror-mc
+set wr_vecnames
+set wr_singlescale
+
+shell rm -rf ./{$tbname}
+shell mkdir ./{$tbname}
+
+let mc_runs = 250
+let run = 0
+
+**** loop ****
+dowhile run < mc_runs
+
+  save all
+  dc temp 0 100 1
+
+  let vout = vh - vl
+
+  wrdata {$tbname}/{$tbname}{$&run}.csv vout vh vl
+  write {$tbname}.raw
+  reset
+
+  let run = run+1
+end
+**** loop ****
+
+.endc
+
+
+
+
+** IHP models
+.lib cornerMOSlv.lib mos_tt_stat
+.lib cornerHBT.lib hbt_typ_stat
+.include ptat_bjt_nmos-curr-mirror-mc.save
+
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.GLOBAL VDD
+.end

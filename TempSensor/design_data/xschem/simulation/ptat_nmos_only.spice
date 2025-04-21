@@ -1,0 +1,34 @@
+** sch_path: /foss/designs/practicing/TempSensor/design_data/xschem/ptat_nmos_only.sch
+**.subckt ptat_nmos_only
+XM1 Vdd net1 net1 GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM2 net1 net2 net2 GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM3 net2 net3 net3 GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM4 net3 GND GND GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM5 Vdd net1 Vout GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM6 Vout net5 GND Vdd sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM7 Vdd net1 net4 GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM8 Vout net4 net5 Vdd sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+V1 Vdd GND 1
+**** begin user architecture code
+
+
+.include ptat_nmos_only.save
+.temp 27
+.control
+save all
+
+op
+write ptat_nmos_only.raw
+
+dc temp 0 100 1
+set appendwrite
+write ptat_nmos_only.raw
+.endc
+
+
+ .lib cornerMOSlv.lib mos_tt
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end
