@@ -259,7 +259,7 @@ model=sg13_lv_nmos
 spiceprefix=X
 }
 C {isource.sym} 140 -320 0 0 {name=I0 value=20u}
-C {sg13g2_pr/cap_cmim.sym} 1120 -380 3 0 {name=C2
+C {sg13g2_pr/cap_cmim.sym} 1120 -380 1 1 {name=C2
 model=cap_cmim
 w=35e-6
 l=35e-6

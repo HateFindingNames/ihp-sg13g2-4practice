@@ -1,10 +1,11 @@
-** sch_path: /foss/designs/practicing/TempSensor/design_data/xschem/diff_amp_tb.sch
-**.subckt diff_amp_tb
-V2 inn GND 40m
-V1 inp GND 40.1m
+** sch_path: /foss/designs/practicing/TempSensor/design_data/xschem/diff_amp_8-16_tb.sch
+**.subckt diff_amp_8-16_tb
+V2 inn GND 1m
+V1 inp GND 10m
 V3 net1 GND 1.263
-x1 net1 inn inp out GND diff_amp
+x1 net1 inn inp out net2 diff_amp_8-16
 XR1 GND out rhigh w=0.5e-6 l=5e-6 m=1 b=0
+V4 net2 GND -1.263
 **** begin user architecture code
 
 
@@ -18,12 +19,15 @@ XR1 GND out rhigh w=0.5e-6 l=5e-6 m=1 b=0
 
 .control
 
-set tbname=diff_amp_tb
+set tbname=diff_amp_8-16_tb
 save dbgain gain out inp inn
 
-dc V1 40.1m 60m 0.1m
+dc V1 2m 200m 0.1m
 
 let indiff = inp - inn
+*if $out < 0
+* let $out == 1e-12
+*end
 let gain = out / indiff
 let dbgain = db(gain)
 
@@ -36,10 +40,10 @@ write {$tbname}.raw
 **** end user architecture code
 **.ends
 
-* expanding   symbol:  practicing/TempSensor/design_data/xschem/diff_amp.sym # of pins=5
-** sym_path: /foss/designs/practicing/TempSensor/design_data/xschem/diff_amp.sym
-** sch_path: /foss/designs/practicing/TempSensor/design_data/xschem/diff_amp.sch
-.subckt diff_amp vp inn inp out vn
+* expanding   symbol:  practicing/TempSensor/design_data/xschem/diff_amp_8-16.sym # of pins=5
+** sym_path: /foss/designs/practicing/TempSensor/design_data/xschem/diff_amp_8-16.sym
+** sch_path: /foss/designs/practicing/TempSensor/design_data/xschem/diff_amp_8-16.sch
+.subckt diff_amp_8-16 vp inn inp out vn
 *.ipin inp
 *.opin out
 *.ipin inn
@@ -64,7 +68,7 @@ XM14 net9 net1 net11 vp sg13_lv_pmos w=10u l=2u ng=1 m=10
 XM17 out net1 vp vp sg13_lv_pmos w=9u l=5u ng=1 m=10
 XM18 out net9 vn vn sg13_lv_nmos w=10u l=0.5u ng=1 m=5
 I0 net1 vn 20u
-XC2 net9 out cap_cmim w=35e-6 l=35e-6 m=1
+XC2 out net9 cap_cmim w=35e-6 l=35e-6 m=1
 .ends
 
 .GLOBAL GND
