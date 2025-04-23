@@ -49,39 +49,39 @@ write {$tbname}.raw
 *.iopin vp
 *.ipin inp
 *.ipin inn
-XM5 net18 net1 vp vp sg13_lv_pmos w=6u l=1u ng=1 m=1
-XM30 net15 inn net6 vn sg13_lv_nmos w=10u l=2u ng=1 m=10
+XM5 net18 net1 vp vp sg13_lv_pmos w=10u l=3.33u ng=1 m=1
+XM30 net15 inn net6 vn sg13_lv_nmos w=10u l=1.5u ng=1 m=5
 I0 vp net4 5u
-XM7 net19 net1 vp vp sg13_lv_pmos w=6u l=1u ng=1 m=1
-XM6 net1 net1 net18 vp sg13_lv_pmos w=6u l=1u ng=1 m=1
-XM8 net5 net1 net19 vp sg13_lv_pmos w=6u l=1u ng=1 m=1
-XM11 net15 net7 vp vp sg13_lv_pmos w=6u l=1u ng=1 m=1
-XM13 net16 net7 vp vp sg13_lv_pmos w=6u l=1u ng=1 m=1
-XM12 net7 net7 net15 vp sg13_lv_pmos w=6u l=1u ng=1 m=1
-XM14 out net7 net16 vp sg13_lv_pmos w=6u l=1u ng=1 m=1
-XM21 net12 net12 vp vp sg13_lv_pmos w=6u l=1u ng=1 m=1
-XM24 net13 net1 vp vp sg13_lv_pmos w=6u l=1u ng=1 m=1
-XM22 net11 net11 net12 vp sg13_lv_pmos w=6u l=1u ng=1 m=1
-XM29 vp inp net6 vn sg13_lv_nmos w=10u l=2u ng=1 m=10
-XM9 net9 inp net5 net5 sg13_lv_pmos w=6u l=1u ng=1 m=1
-XM10 net8 inn net5 net5 sg13_lv_pmos w=6u l=1u ng=1 m=1
-XM1 net4 net4 net3 vn sg13_lv_nmos w=10u l=2u ng=1 m=10
-XM2 net3 net4 vn vn sg13_lv_nmos w=10u l=2u ng=1 m=10
-XM3 net1 net4 net2 vn sg13_lv_nmos w=10u l=2u ng=1 m=10
-XM4 net2 net4 vn vn sg13_lv_nmos w=10u l=2u ng=1 m=10
-XM31 net6 net4 net17 vn sg13_lv_nmos w=10u l=2u ng=1 m=10
-XM32 net17 net4 vn vn sg13_lv_nmos w=10u l=2u ng=1 m=10
-XM15 net7 net4 net8 vn sg13_lv_nmos w=10u l=2u ng=1 m=10
-XM16 net8 net4 vn vn sg13_lv_nmos w=10u l=2u ng=1 m=10
-XM17 net10 net4 net9 vn sg13_lv_nmos w=10u l=2u ng=1 m=10
-XM18 net9 net4 vn vn sg13_lv_nmos w=10u l=2u ng=1 m=10
-XM20 net11 net4 vn vn sg13_lv_nmos w=10u l=2u ng=1 m=10
-XM19 net10 net11 out vp sg13_lv_pmos w=6u l=1u ng=1 m=1
-XM23 out net13 net10 vn sg13_lv_nmos w=10u l=2u ng=1 m=10
-XM25 net13 net13 net14 vn sg13_lv_nmos w=10u l=2u ng=1 m=10
-XM26 net14 net14 vn vn sg13_lv_nmos w=10u l=2u ng=1 m=10
-XM27 vp out out vp sg13_lv_nmos w=10u l=2u ng=1 m=10
-XM28 vn net10 out vn sg13_lv_pmos w=6u l=1u ng=1 m=1
+XM7 net19 net1 vp vp sg13_lv_pmos w=10u l=3.33u ng=1 m=2
+XM6 net1 net1 net18 vp sg13_lv_pmos w=10u l=1u ng=1 m=1
+XM8 net5 net1 net19 vp sg13_lv_pmos w=10u l=.5u ng=1 m=1
+XM11 net15 net7 vp vp sg13_lv_pmos w=10u l=2.5u ng=1 m=5
+XM13 net16 net7 vp vp sg13_lv_pmos w=10u l=2.5u ng=1 m=5
+XM12 net7 net7 net15 vp sg13_lv_pmos w=10u l=1u ng=1 m=5
+XM14 out net7 net16 vp sg13_lv_pmos w=10u l=1u ng=1 m=5
+XM21 net12 net12 vp vp sg13_lv_pmos w=10u l=.33u ng=1 m=10
+XM24 net13 net1 vp vp sg13_lv_pmos w=4u l=5u ng=1 m=1
+XM22 net11 net11 net12 vp sg13_lv_pmos w=10u l=.33u ng=1 m=10
+XM29 vp inp net6 vn sg13_lv_nmos w=10u l=1.5u ng=1 m=5
+XM9 net9 inp net5 net5 sg13_lv_pmos w=10u l=1.5u ng=1 m=10
+XM10 net8 inn net5 net5 sg13_lv_pmos w=10u l=1.5u ng=1 m=10
+XM1 net4 net4 net3 vn sg13_lv_nmos w=10u l=2u ng=1 m=1
+XM2 net3 net4 vn vn sg13_lv_nmos w=5u l=5u ng=1 m=1
+XM3 net1 net4 net2 vn sg13_lv_nmos w=10u l=2u ng=1 m=1
+XM4 net2 net4 vn vn sg13_lv_nmos w=5u l=5u ng=1 m=1
+XM31 net6 net4 net17 vn sg13_lv_nmos w=10u l=1u ng=1 m=1
+XM32 net17 net4 vn vn sg13_lv_nmos w=10u l=5u ng=1 m=1
+XM15 net7 net4 net8 vn sg13_lv_nmos w=10u l=1u ng=1 m=5
+XM16 net8 net4 vn vn sg13_lv_nmos w=10u l=5u ng=1 m=1
+XM17 net10 net4 net9 vn sg13_lv_nmos w=10u l=1u ng=1 m=5
+XM18 net9 net4 vn vn sg13_lv_nmos w=10u l=5u ng=1 m=1
+XM20 net11 net4 vn vn sg13_lv_nmos w=1.5u l=5u ng=1 m=1
+XM19 net10 net11 out vp sg13_lv_pmos w=10u l=.33u ng=1 m=10
+XM23 out net13 net10 vn sg13_lv_nmos w=10u l=.5u ng=1 m=5
+XM25 net13 net13 net14 vn sg13_lv_nmos w=10u l=.5u ng=1 m=5
+XM26 net14 net14 vn vn sg13_lv_nmos w=10u l=.5u ng=1 m=5
+XM27 vp out out vp sg13_lv_nmos w=10u l=.33u ng=1 m=10
+XM28 vn net10 out vn sg13_lv_pmos w=10u l=.5u ng=1 m=5
 XC1 out out cap_cmim w=3.5e-5 l=3.5e-5 m=1
 XC2 out net10 cap_cmim w=3.5e-5 l=3.5e-5 m=1
 .ends

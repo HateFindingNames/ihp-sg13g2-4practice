@@ -5,8 +5,8 @@ V {}
 S {}
 E {}
 B 2 460 -700 1260 -300 {flags=graph
-y1=0.3
-y2=0.31
+y1=0.11
+y2=0.12
 ypos1=0
 ypos2=2
 divy=5
@@ -26,8 +26,8 @@ logx=0
 logy=0
 }
 B 2 1280 -700 2080 -300 {flags=graph
-y1=3.6
-y2=50
+y1=-4.6
+y2=42
 ypos1=0
 ypos2=2
 divy=5
@@ -79,30 +79,27 @@ value="
 set tbname="diff_amp_8-22_tb"
 save dbgain gain out inp inn
 
-dc V1 2m 200m 0.1m
+let runs = 5
+let run = 0
 
-let indiff = inp - inn
-*if $out < 0
-* let $out == 1e-12
-*end
-let gain = out / indiff
-let dbgain = db(gain)
+dowhile runs < run
 
-wrdata \{$tbname\}.csv gain out inp inn
-write \{$tbname\}.raw
+  dc V1 2m 200m 0.1m
+
+  let indiff = inp - inn
+  let gain = out / indiff
+  let dbgain = db(gain)
+
+*  wrdata \{$tbname\}.csv gain out inp inn
+  write \{$tbname\}.raw
+  let run = run + 1
+  reset
+end
 
 .endc
 "}
 C {vsource.sym} 1000 -80 0 0 {name=V3 value=1.263 savecurrent=false}
 C {lab_pin.sym} 870 -180 0 1 {name=p7 sig_type=std_logic lab=out}
-C {sg13g2_pr/rhigh.sym} 870 -80 0 0 {name=R1
-w=0.5e-6
-l=5e-6
-model=rhigh
-spiceprefix=X
-b=0
-m=1
-}
 C {gnd.sym} 870 -50 0 0 {name=l5 lab=GND}
 C {lab_pin.sym} 630 -150 0 0 {name=p1 sig_type=std_logic lab=inp}
 C {lab_pin.sym} 690 -140 2 0 {name=p2 sig_type=std_logic lab=inn
@@ -114,3 +111,8 @@ tclcommand="xschem raw_read $netlist_dir/diff_amp_8-22_tb.raw dc"
 C {gnd.sym} 780 -50 0 0 {name=l6 lab=GND}
 C {vsource.sym} 780 -80 0 0 {name=V4 value=-1.263 savecurrent=false}
 C {practicing/TempSensor/design_data/xschem/diff_amp_8-22.sym} 770 -180 0 0 {name=x1}
+C {res.sym} 870 -80 0 0 {name=R2
+value=\{rload\}
+footprint=1206
+device=resistor
+m=1}
