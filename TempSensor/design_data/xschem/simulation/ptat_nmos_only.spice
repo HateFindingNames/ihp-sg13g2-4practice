@@ -4,29 +4,39 @@ XM1 Vdd net1 net1 GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
 XM2 net1 net2 net2 GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
 XM3 net2 net3 net3 GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
 XM4 net3 GND GND GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
-XM5 Vdd net1 Vout GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
-XM6 Vout net5 GND Vdd sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
-XM7 Vdd net1 net4 GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
-XM8 Vout net4 net5 Vdd sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM5 Vdd net1 vout GND sg13_lv_nmos w={ww} l={ll} ng=1 m=1
+XM7 Vdd net1 net4 GND sg13_lv_nmos w={ww} l={ll} ng=1 m=1
 V1 Vdd GND 1
+XM9 net5 net4 vout Vdd sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+XM6 GND net5 vout Vdd sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
 **** begin user architecture code
 
+.lib cornerMOSlv.lib mos_tt
 
-.include ptat_nmos_only.save
-.temp 27
+
+
+.param ww = 0.15u ll = 0.33u
 .control
+shell rm DELETE_ME_ptat_nmos_only.csv ptat_nmos_only.raw
+
 save all
 
-op
-write ptat_nmos_only.raw
+set wr_singlescale            ; for wrdata: write the scale only once
+set wr_vecnames               ; for wrdata: write the vector names
 
-dc temp 0 100 1
-set appendwrite
-write ptat_nmos_only.raw
+foreach wval 0.15u 0.5u 1u 2u 5u
+ alterparam ww = $wval
+ echo '=== wval = $wval'
+ echo '=== curplot = $curplot'
+ reset
+ dc temp 0 125 1
+end
+
+wrdata DELETE_ME_ptat_nmos_only.csv all.vout
+write ptat_nmos_only.raw all.vout
+*plot all.vout
 .endc
 
-
- .lib cornerMOSlv.lib mos_tt
 
 **** end user architecture code
 **.ends
