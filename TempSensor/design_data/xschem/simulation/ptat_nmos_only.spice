@@ -1,39 +1,131 @@
 ** sch_path: /foss/designs/practicing/TempSensor/design_data/xschem/ptat_nmos_only.sch
 **.subckt ptat_nmos_only
-XM1 Vdd net1 net1 GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM1 Vdd net1 net1 GND sg13_lv_nmos w={inp_w} l={inp_l} ng=1 m=1
 XM2 net1 net2 net2 GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
 XM3 net2 net3 net3 GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
 XM4 net3 GND GND GND sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
-XM5 Vdd net1 vout GND sg13_lv_nmos w={ww} l={ll} ng=1 m=1
-XM7 Vdd net1 net4 GND sg13_lv_nmos w={ww} l={ll} ng=1 m=1
+XM5 Vdd net1 vout GND sg13_lv_nmos w={inp_w} l={inp_l} ng=1 m=1
+XM7 Vdd net1 net4 GND sg13_lv_nmos w={inp_w} l={inp_l} ng=1 m=1
 V1 Vdd GND 1
-XM9 net5 net4 vout Vdd sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
-XM6 GND net5 vout Vdd sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+XM9 net5 net4 vout Vdd sg13_lv_pmos w={out_w} l={out_l} ng=1 m=1
+XM6 GND net5 vout Vdd sg13_lv_pmos w={out_w} l={out_l} ng=1 m=1
 **** begin user architecture code
 
 .lib cornerMOSlv.lib mos_tt
 
 
 
-.param ww = 0.15u ll = 0.33u
+.param inp_w = 0.15u inp_l = 0.13u
+.param out_w = 0.15u out_l = 0.13u
 .control
-shell rm DELETE_ME_ptat_nmos_only.csv ptat_nmos_only.raw
 
+destroy all
 save all
 
-set wr_singlescale            ; for wrdata: write the scale only once
-set wr_vecnames               ; for wrdata: write the vector names
+*set wr_singlescale            ; for wrdata: write the scale only once
+*set wr_vecnames               ; for wrdata: write the vector names
 
-foreach wval 0.15u 0.5u 1u 2u 5u
- alterparam ww = $wval
- echo '=== wval = $wval'
+foreach varval 0.15u 0.3u 0.6u 1.2u
+ alterparam inp_l = $varval
+ echo '=== varval = $varval'
  echo '=== curplot = $curplot'
  reset
  dc temp 0 125 1
 end
 
-wrdata DELETE_ME_ptat_nmos_only.csv all.vout
-write ptat_nmos_only.raw all.vout
+*wrdata ptat_nmos_only_varinpl.csv all.vout
+write ptat_nmos_only_varinpl.raw all.vout
+*plot all.vout
+.endc
+
+
+
+
+.param inp_w = 0.15u inp_l = 0.13u
+.param out_w = 5u out_l = 0.13u
+.dc temp 0 125 1
+.control
+destroy all
+save all
+run
+
+*wrdata ptat_nmos_only_novar.csv vout
+write ptat_nmos_only_novar.raw
+*plot all.vout
+.endc
+
+
+
+
+.param inp_w = 0.15u inp_l = 0.13u
+.param out_w = 0.15u out_l = 0.13u
+.control
+destroy all
+save all
+
+set wr_singlescale            ; for wrdata: write the scale only once
+set wr_vecnames               ; for wrdata: write the vector names
+
+foreach varval 0.15u 0.33u 1u 2u
+ alterparam inp_w = $varval
+ echo '=== varval = $varval'
+ echo '=== curplot = $curplot'
+ reset
+ dc temp 0 125 1
+end
+
+*wrdata ptat_nmos_only_varinpw.csv all.vout
+write ptat_nmos_only_varinpw.raw all.vout
+*plot all.vout
+.endc
+
+
+
+
+.param inp_w = 0.15u inp_l = 0.13u
+.param out_w = 0.15u out_l = 0.13u
+.control
+destroy all
+save all
+reset
+set wr_singlescale            ; for wrdata: write the scale only once
+set wr_vecnames               ; for wrdata: write the vector names
+
+foreach varval 0.15u 0.33u 1u 5u
+ alterparam out_w = $varval
+ echo '=== varval = $varval'
+ echo '=== curplot = $curplot'
+ reset
+ dc temp 0 125 1
+end
+
+*wrdata ptat_nmos_only_varoutw.csv all.vout
+write ptat_nmos_only_varoutw.raw all.vout
+*plot all.vout
+.endc
+
+
+
+
+.param inp_w = 0.15u inp_l = 0.13u
+.param out_w = 0.15u out_l = 0.13u
+.control
+destroy all
+save all
+
+set wr_singlescale            ; for wrdata: write the scale only once
+set wr_vecnames               ; for wrdata: write the vector names
+
+foreach varval 0.15u 0.33u 1u 2u
+ alterparam out_l = $varval
+ echo '=== varval = $varval'
+ echo '=== curplot = $curplot'
+ reset
+ dc temp 0 125 1
+end
+
+*wrdata ptat_nmos_only_varoutl.csv all.vout
+write ptat_nmos_only_varoutl.raw all.vout
 *plot all.vout
 .endc
 
