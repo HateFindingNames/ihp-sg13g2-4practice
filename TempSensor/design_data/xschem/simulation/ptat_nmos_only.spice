@@ -17,116 +17,33 @@ XM6 GND net5 vout Vdd sg13_lv_pmos w={out_w} l={out_l} ng=1 m=1
 
 .param inp_w = 0.15u inp_l = 0.13u
 .param out_w = 0.15u out_l = 0.13u
+
 .control
 
-destroy all
-save all
+let run = 0
+set curplot = new            ; 'new' creates a new plot of some name
+set scratch = $curplot       ; the new plot is stored in 'scratch'
+setplot $scratch
 
-*set wr_singlescale            ; for wrdata: write the scale only once
-*set wr_vecnames               ; for wrdata: write the vector names
+* Initialize a vector to store the results of each parameter alteration
+let varinpl = unitvec(2)     ; Adjust the length according to the number of iterations
 
-foreach varval 0.15u 0.3u 0.6u 1.2u
+foreach varval 0.15u 0.3u
  alterparam inp_l = $varval
  echo '=== varval = $varval'
- echo '=== curplot = $curplot'
- reset
  dc temp 0 125 1
+ set run = $&run
+ let dt = $curplot            ; store the current plot name
+ setplot $scratch             ; select the scratch plot
+ let varinpl[$run] = $dt.vout ; Track results, indexed by the value being varied
+ setplot $dt
+ let run = run + 1
+ reset
 end
 
-*wrdata ptat_nmos_only_varinpl.csv all.vout
-write ptat_nmos_only_varinpl.raw all.vout
-*plot all.vout
-.endc
+wrdata ptat_nmos_only_varinpl.csv {$scratch}.varinpl
+write ptat_nmos_only_varinpl.raw
 
-
-
-
-.param inp_w = 0.15u inp_l = 0.13u
-.param out_w = 5u out_l = 0.13u
-.dc temp 0 125 1
-.control
-destroy all
-save all
-run
-
-*wrdata ptat_nmos_only_novar.csv vout
-write ptat_nmos_only_novar.raw
-*plot all.vout
-.endc
-
-
-
-
-.param inp_w = 0.15u inp_l = 0.13u
-.param out_w = 0.15u out_l = 0.13u
-.control
-destroy all
-save all
-
-set wr_singlescale            ; for wrdata: write the scale only once
-set wr_vecnames               ; for wrdata: write the vector names
-
-foreach varval 0.15u 0.33u 1u 2u
- alterparam inp_w = $varval
- echo '=== varval = $varval'
- echo '=== curplot = $curplot'
- reset
- dc temp 0 125 1
-end
-
-*wrdata ptat_nmos_only_varinpw.csv all.vout
-write ptat_nmos_only_varinpw.raw all.vout
-*plot all.vout
-.endc
-
-
-
-
-.param inp_w = 0.15u inp_l = 0.13u
-.param out_w = 0.15u out_l = 0.13u
-.control
-destroy all
-save all
-reset
-set wr_singlescale            ; for wrdata: write the scale only once
-set wr_vecnames               ; for wrdata: write the vector names
-
-foreach varval 0.15u 0.33u 1u 5u
- alterparam out_w = $varval
- echo '=== varval = $varval'
- echo '=== curplot = $curplot'
- reset
- dc temp 0 125 1
-end
-
-*wrdata ptat_nmos_only_varoutw.csv all.vout
-write ptat_nmos_only_varoutw.raw all.vout
-*plot all.vout
-.endc
-
-
-
-
-.param inp_w = 0.15u inp_l = 0.13u
-.param out_w = 0.15u out_l = 0.13u
-.control
-destroy all
-save all
-
-set wr_singlescale            ; for wrdata: write the scale only once
-set wr_vecnames               ; for wrdata: write the vector names
-
-foreach varval 0.15u 0.33u 1u 2u
- alterparam out_l = $varval
- echo '=== varval = $varval'
- echo '=== curplot = $curplot'
- reset
- dc temp 0 125 1
-end
-
-*wrdata ptat_nmos_only_varoutl.csv all.vout
-write ptat_nmos_only_varoutl.raw all.vout
-*plot all.vout
 .endc
 
 

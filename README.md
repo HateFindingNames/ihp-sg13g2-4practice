@@ -22,13 +22,34 @@ Custom ``.designinit`` from [here](https://gist.github.com/0486ea22c6422ac99e099
 
 ### [ptat_nmos_only](designs/sg13g2/practicing/TempSensor/design_data/xschem/ptat_nmos_only.sch)
 
-[10.1109/SMICND.2005.1558746](10.1109/SMICND.2005.1558746)
+![](.doc/ptat_nmos_only.png)
 
-
+From [*The ptat sensors in CMOS technology*](https://ieeexplore.ieee.org/document/1558746).
 
 ## Amplifier
 
+[diff_amp_compare_tb.sch](TempSensor/design_data/xschem/diff_amp_compare_tb.sch)
+![](.doc/diffamp_compare.png)
+
+Design as shown in fig. 8.16 and fig. 8.22 in Hans Camenzinds Book [*Designing Analog Chips*](http://www.designinganalogchips.com/). Device params to be tuned.
+
+### 8-16
+
+[diff_amp_8-16.sch](TempSensor/design_data/xschem/diff_amp_8-16.sch)
+![](.doc/diff_amp_8-16.png)
+
+### 8-22
+
+[diff_amp_8-22.sch](TempSensor/design_data/xschem/diff_amp_8-22.sch)
+![](.doc/diff_amp_8-22.png)
+
 ## ADC
+
+$\Sigma \Delta$
+
+### SKY130
+
+Two tested working designs in SKY130 PDK.
 
 * [**[TT]** 4bit SAR ADC](https://github.com/RVCE-DrSSN/tt_um_4Bit_SAR_ADC)
 * [**[TT]** 12bit SAR ADC](https://www.tinytapeout.com/runs/tt07/tt_um_rnunes2311_12bit_sar_adc) und [SAR_ADC_12bit](https://github.com/rnunes2311/SAR_ADC_12bit)
