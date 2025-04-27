@@ -28,16 +28,19 @@ From [*The ptat sensors in CMOS technology*](https://ieeexplore.ieee.org/documen
 
 ## Amplifier
 
+[diff_amp_compare_tb.sch](TempSensor/design_data/xschem/diff_amp_compare_tb.sch)
 ![](.doc/diffamp_compare.png)
 
-Design in fig. 8.16 and fig. 8.22 in Hans Camenzinds Book [*Designing Analog Chips*](http://www.designinganalogchips.com/).
+Design as shown in fig. 8.16 and fig. 8.22 in Hans Camenzinds Book [*Designing Analog Chips*](http://www.designinganalogchips.com/). Device params to be tuned.
 
 ### 8-16
 
+[diff_amp_8-16.sch](TempSensor/design_data/xschem/diff_amp_8-16.sch)
 ![](.doc/diff_amp_8-16.png)
 
 ### 8-22
 
+[diff_amp_8-22.sch](TempSensor/design_data/xschem/diff_amp_8-22.sch)
 ![](.doc/diff_amp_8-22.png)
 
 ## ADC
