@@ -26,6 +26,12 @@ Custom ``.designinit`` from [here](https://gist.github.com/0486ea22c6422ac99e099
 
 From [*The ptat sensors in CMOS technology*](https://ieeexplore.ieee.org/document/1558746).
 
+### [ptat_bjt_nmos_curr-mirror](designs/sg13g2/practicing/TempSensor/design_data/xschem/ptat_bjt_nmos_curr-mirror.sch)
+
+Below is a "textbook"-type temperature sensor. The sensing takes place happens using two npn-BJTs. The BJTs are driven using nMOS-current-mirror with a $\approx \frac{1}{10}$ ratio.
+
+![](.doc/ptat_bjt_nmos_curr-mirror_amp_tb.sch.png)
+
 ## Amplifier
 
 [diff_amp_compare_tb.sch](TempSensor/design_data/xschem/diff_amp_compare_tb.sch)
