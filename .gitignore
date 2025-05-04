@@ -1,4 +1,5 @@
 *.stl
 *.raw
 DELETE_ME*
-*.csv
+simulations/
+simulation/
