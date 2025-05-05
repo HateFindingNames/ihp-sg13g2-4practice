@@ -47,6 +47,14 @@ Design as shown in fig. 8.16 and fig. 8.22 in Hans Camenzinds Book [*Designing A
 
 $\Sigma \Delta$
 
+# Layout
+
+My humble first layout taken the temperature sensor [ptat_nmos_only](designs/sg13g2/practicing/TempSensor/design_data/xschem/ptat_nmos_only.sch) and [diff_amp_8-16.sch](TempSensor/design_data/xschem/diff_amp_8-16.sch) from above. This is considered WIP. Size at the current state is about **40 x 125 microns**.
+
+![.doc/1st_layout_full_hierarchy.png](.doc/1st_layout_full_hierarchy.png)
+
+![.doc/1st_layout.png](.doc/1st_layout.png)
+
 ### SKY130
 
 Two tested working designs in SKY130 PDK.
